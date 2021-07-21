@@ -1,0 +1,26 @@
+﻿#EF Core
+
+	(1) Instalar o pacote Microsoft.EntityFrameworkCore.SqlServer
+	(2) Criar a classe de Dev2bDbContext : DbContext e implementar o construtor => public Dev2bDbContext(DbContextOptions<Dev2bDbContext> options) : base(options) { }
+	(3) Criar o DbSet de Pessoas => public DbSet<Pessoa> Pessoas { get; set; }
+	(4) Criar a classe de mapeamento das entidades
+	(5) Registrar o DbContext configurando a string de conexão
+	(6) Adicionar a string de conexão no arquivo appsettings.json
+	(7) Injetar o DbContext no Repository
+
+#Migrations
+	https://www.youtube.com/watch?v=sYLfDaDQdm4&ab_channel=JoseCarlosMacoratti
+
+	(1) Instalar o pacote Microsoft.EntityFrameworkCore.Tools no projeto onde fica o DbContext;
+	(2) Instalar o pacote Microsoft.EntityFrameworkCore.Design no projeto startup (onde contém a string de conexão);
+	(3) Abrir o Package Manager Console e escolher o projeto onde foi instalado o Tools;
+	(4) Executar o comando add-migration CriacaoInicial para criar o primeiro arquivo de migração;
+	(5) Executar o comando update-database para que seja aplicado as migrations no banco de dados;
+	(6) Comando Remove-Migration remove a última migração caso ela ainda não tenha sido aplicado ao banco de dados;
+
+	Comados:
+		Add-Migration <NomeDaMigration>		#cria uma migration com o nome especificado
+		Update-Database				#aplica as migrations no banco de dados
+		Remove-Migration			#remove a última migration criada caso a mesma não tenha sido utilizada
+		Update-Database <NomeDaMigration>	#Atualiza/reverte o banco de dados para o estado da migration especificada
+		Get-Migration				#Obtêm a lista das migrations
